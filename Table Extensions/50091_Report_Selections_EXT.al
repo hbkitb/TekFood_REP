@@ -1055,7 +1055,7 @@ tableextension 50091 "Report Selections EX ITB" extends 77
     local procedure FindItemValue(var Pass_ParamText: Text; var Pass_ParamValue: Text; var Pass_ShowOption: Option No,Yes,"Yes - with leading text"; VAR Pass_CustomerNo: Code[20])
     var
         Item: Record Item;
-        //HBK ItemCrossReference: Record "Item Cross Reference";
+        //HBK ItemCrossReference: Record "Item Cross Reference";//
         ItemCrossReference: Record "Item Reference";  //HBK / ITB - 210521
         ItemNo: Code[20];
 
