@@ -499,6 +499,11 @@ report 50028 "Purchase Requisition ITB"
                         column(Qty_PurchLine; "Purchase Line".Quantity)
                         {
                         }
+                        //HBK / ITB - 071221
+                        column(Colli_PurchLine; "Purchase Line".QtyColli)
+                        {
+                        }
+                        //HBK / ITB - 071221                     
                         column(UOM_PurchLine; "Purchase Line"."Unit of Measure")
                         {
                         }
@@ -601,10 +606,6 @@ report 50028 "Purchase Requisition ITB"
                         }
                         //HBK / ITB - 071221
                         column(Colli_PurchLineCaption; ColliCaptionLbl)
-                        {
-                        }
-
-                        column(Colli_PurchLine; "Purchase Line".QtyColli)
                         {
                         }
 
