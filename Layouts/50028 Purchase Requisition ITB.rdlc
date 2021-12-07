@@ -456,6 +456,12 @@
         <Field Name="Qty_PurchLineFormat">
           <DataField>Qty_PurchLineFormat</DataField>
         </Field>
+        <Field Name="Colli_PurchLine">
+          <DataField>Colli_PurchLine</DataField>
+        </Field>
+        <Field Name="Colli_PurchLineFormat">
+          <DataField>Colli_PurchLineFormat</DataField>
+        </Field>
         <Field Name="UOM_PurchLine">
           <DataField>UOM_PurchLine</DataField>
         </Field>
@@ -824,10 +830,10 @@
                                     <Width>2.11111cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>5.12497cm</Width>
+                                    <Width>5.40062cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.31068cm</Width>
+                                    <Width>2.03518cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>1.651cm</Width>
@@ -1375,10 +1381,11 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Code.BlankZero(Fields!Colli_PurchLine.Value)</Value>
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontSize>9pt</FontSize>
+                                                      <Format>=Fields!Qty_PurchLineFormat.Value</Format>
                                                       <NumeralVariant>2</NumeralVariant>
                                                     </Style>
                                                   </TextRun>
@@ -1388,6 +1395,9 @@
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox25</rd:DefaultName>
                                             <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
                                               <VerticalAlign>Top</VerticalAlign>
                                               <PaddingRight>5pt</PaddingRight>
                                             </Style>
@@ -2510,7 +2520,7 @@
                               <Top>0.00521cm</Top>
                               <Left>0.07111cm</Left>
                               <Height>3.81004cm</Height>
-                              <Width>20.55147cm</Width>
+                              <Width>20.55162cm</Width>
                               <Style />
                             </Tablix>
                           </ReportItems>
