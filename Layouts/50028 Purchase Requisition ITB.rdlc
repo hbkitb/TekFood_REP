@@ -830,7 +830,7 @@
                                     <Width>2.11111cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>5.40062cm</Width>
+                                    <Width>5.13083cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>2.03518cm</Width>
@@ -1402,7 +1402,6 @@
                                               <PaddingRight>5pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -2520,7 +2519,7 @@
                               <Top>0.00521cm</Top>
                               <Left>0.07111cm</Left>
                               <Height>3.81004cm</Height>
-                              <Width>20.55162cm</Width>
+                              <Width>20.28183cm</Width>
                               <Style />
                             </Tablix>
                           </ReportItems>
