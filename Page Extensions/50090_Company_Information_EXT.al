@@ -8,7 +8,7 @@ pageextension 50090 "Company Information Ext ITB" extends "Company Information"
             group("Betalinger FIK")
             {
                 ///*
-                field("FIK Bank Creditor No."; Rec."FIK Bank Creditor No.")//
+                field("FIK Bank Creditor No."; Rec."FIK Bank Creditor No.")
                 {
                     ApplicationArea = All;
                 }
