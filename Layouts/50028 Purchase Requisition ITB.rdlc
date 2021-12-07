@@ -4582,6 +4582,9 @@ End Function
         <Field Name="Qty_PurchLineCaption">
           <DataField>Qty_PurchLineCaption</DataField>
         </Field>
+        <Field Name="Colli_PurchLineCaption">
+          <DataField>Colli_PurchLineCaption</DataField>
+        </Field>
         <Field Name="UOM_PurchLineCaption">
           <DataField>UOM_PurchLineCaption</DataField>
         </Field>

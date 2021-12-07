@@ -603,11 +603,11 @@ report 50028 "Purchase Requisition ITB"
                         column(Colli_PurchLineCaption; ColliCaptionLbl)
                         {
                         }
-                        /*
-                        column(Colli_PurchLine; "Purchase Line".)
+
+                        column(Colli_PurchLine; "Purchase Line".QtyColli)
                         {
                         }
-                        */
+
                         //HBK / ITB - 071221                                                                    
                         column(UOM_PurchLineCaption; UnitOfMeasureLbl)
                         {
