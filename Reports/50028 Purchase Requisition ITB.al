@@ -599,6 +599,16 @@ report 50028 "Purchase Requisition ITB"
                         column(Qty_PurchLineCaption; QtyCaptionLbl)
                         {
                         }
+                        //HBK / ITB - 071221
+                        column(Colli_PurchLineCaption; ColliCaptionLbl)
+                        {
+                        }
+                        /*
+                        column(Colli_PurchLine; "Purchase Line".)
+                        {
+                        }
+                        */
+                        //HBK / ITB - 071221                                                                    
                         column(UOM_PurchLineCaption; UnitOfMeasureLbl)
                         {
                         }
@@ -1561,6 +1571,7 @@ report 50028 "Purchase Requisition ITB"
         TotalExclVATTextLbl: TextConst DAN = 'Momsgrundlag', DEU = 'MwSt. Grundlage', ENU = 'VAT Base';
         TotalInclVATTextLbl: TextConst DAN = 'Total beløb', ENU = 'Total Amount';
         QtyCaptionLbl: TextConst DAN = 'Antal', DEU = 'Menge', ENU = 'Qty';
+        ColliCaptionLbl: TextConst DAN = 'Kolli', ENU = 'Colli'; //HBK / ITB - 071221
         PurchaseLineNo: Text[20];
         "//ITB.04": Integer;
         Item: Record "Item";
