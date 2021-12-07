@@ -608,7 +608,7 @@ report 50028 "Purchase Requisition ITB"
                         {
                         }
 
-                        //HBK / ITB - 071221                                                                    
+                        //HBK / ITB - 071221  //                                                                  
                         column(UOM_PurchLineCaption; UnitOfMeasureLbl)
                         {
                         }
