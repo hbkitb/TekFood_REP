@@ -951,10 +951,10 @@ report 50020 "Sales - Invoice ITB"
                         }
 
                         trigger OnAfterGetRecord();
-                        /*
-                                                var
-                                                    MangIten: Record Item;  //HBK / ITB - 091221
-                                                    */
+
+                        var
+                            MangIten: Record Item;  //HBK / ITB - 091221
+
 
                         begin
                             PostedShipmentDate := 0D;
@@ -1048,9 +1048,9 @@ report 50020 "Sales - Invoice ITB"
                                     TextLine[TextLineIdx] := ParamText[ParamIdx];
                                 END;
 
-                                //MangIten.Reset;
-                                //if MangIten.Get("No.") then
-                                Mangde := Item.Mangde  //HBK / ITB - 091221
+                                MangIten.Reset;
+                                if MangIten.Get("No.") then
+                                    Mangde := MangIten.Mangde;  //HBK / ITB - 091221
 
                             END;
 
