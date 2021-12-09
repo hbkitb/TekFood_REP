@@ -746,7 +746,7 @@ report 50020 "Sales - Invoice ITB"
                         column(TextLine5; TextLine[5])
                         {
                         }
-                        //HBK / ITB - 091221//
+                        //HBK / ITB - 091221
                         column(Mangde; Mangde)
                         {
                         }
