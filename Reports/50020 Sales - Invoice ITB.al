@@ -746,6 +746,12 @@ report 50020 "Sales - Invoice ITB"
                         column(TextLine5; TextLine[5])
                         {
                         }
+                        //HBK / ITB - 091221//
+                        column(Mangde; Mangde)
+                        {
+                        }
+                        //HBK / ITB - 091221
+
                         column(ShipmentDate_SalesInvLine; FORMAT("Shipment Date", 0, '<Day,2>/<Month,2>-<Year4>'))
                         {
                         }
@@ -945,6 +951,11 @@ report 50020 "Sales - Invoice ITB"
                         }
 
                         trigger OnAfterGetRecord();
+                        /*
+                                                var
+                                                    MangIten: Record Item;  //HBK / ITB - 091221
+                                                    */
+
                         begin
                             PostedShipmentDate := 0D;
                             IF Quantity <> 0 THEN
@@ -1036,6 +1047,10 @@ report 50020 "Sales - Invoice ITB"
                                     TextLineIdx += 1;
                                     TextLine[TextLineIdx] := ParamText[ParamIdx];
                                 END;
+
+                                //MangIten.Reset;
+                                //if MangIten.Get("No.") then
+                                Mangde := Item.Mangde  //HBK / ITB - 091221
 
                             END;
 
@@ -2117,6 +2132,7 @@ report 50020 "Sales - Invoice ITB"
         PaymentTermLines1_Navadan: Label 'All remittance expenses are the full responsibility of the payer.';
         PaymentTermLines2_Navadan: Label 'We do not accept any deductions of bank transfer charges.';
         BeneficiaryCaption: Label 'BENEFICIARY:';
+        Mangde: Text[20];  //HBK / ITB - 091221
 
     procedure InitLogInteraction();
     begin
