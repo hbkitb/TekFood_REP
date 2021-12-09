@@ -1050,7 +1050,7 @@ report 50020 "Sales - Invoice ITB"
 
                                 MangIten.Reset;
                                 if MangIten.Get("No.") then
-                                    Mangde := MangIten.Mangde;  //HBK / ITB - 091221
+                                    Mangde := MangIten.Mangde;  //HBK / ITB - 091221                                   
 
                             END;
 
