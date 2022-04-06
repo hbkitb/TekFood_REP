@@ -1201,6 +1201,9 @@ report 50020 "Sales - Invoice ITB"
                         }
 
                         trigger OnAfterGetRecord()
+
+                        var
+                            TrackEntryExp: Record "Item Ledger Entry";  //HBK / ITB
                         begin
                             IF Number = 1 THEN
                                 TrackingSpecBuffer.FINDSET
@@ -1226,6 +1229,36 @@ report 50020 "Sales - Invoice ITB"
                             END ELSE
                                 ShowGroup := TRUE;
                             TotalQty += TrackingSpecBuffer."Quantity (Base)";
+                            //HBK / ITB - 060422 - Udløbsdato
+                            TrackEntryExp.Reset;
+                            Clear(TrackEntryExp);
+                            //Message(TrackingSpecBuffer."Item No.");
+                            //Message(Format("Sales Invoice Header"."Posting Date"));
+                            //Message(Format("Sales Invoice Line"."Line No."));
+                            //Message(TrackingSpecBuffer."Lot No.");
+                            //Message("Sales Invoice Header"."No.");
+                            //Message(format(TrackingSpecBuffer."Entry No."));
+                            //Message(TrackingSpecBuffer."Source ID");
+                            //Message(TrackingSpecBuffer."Source Batch Name");
+                            //Message(format(TrackingSpecBuffer."Appl.-from Item Entry"));
+                            //Message(format(TrackingSpecBuffer."Source Subtype"));
+                            //Message(format(TrackingSpecBuffer."Source Ref. No."));
+                            //Message(format(TrackingSpecBuffer."Item Ledger Entry No."));
+                            TrackEntryExp.SetRange("Item No.", TrackingSpecBuffer."Item No.");
+                            //TrackEntryExp.SetRange("Posting Date", "Sales Invoice Header"."Posting Date");
+                            TrackEntryExp.SetRange("Entry Type", TrackEntryExp."Entry Type"::Sale);
+                            //TrackEntryExp.SetRange("Document No.", TrackingSpecBuffer."Source ID");
+                            TrackEntryExp.SetRange("Document Line No.", TrackingSpecBuffer."Source Ref. No.");
+                            TrackEntryExp.SetRange("Lot No.", TrackingSpecBuffer."Lot No.");
+                            //TrackEntryExp.SetRange("Item Tracking", TrackEntryExp."Item Tracking"::"Lot No.");
+                            if TrackEntryExp.FindSet then begin
+                                //Message(Format(TrackEntryExp."Expiration Date"));
+                                TrackingSpecBuffer."Expiration Date" := TrackEntryExp."Expiration Date";
+                                TrackingSpecBuffer.Modify;
+                            end;
+                            //TrackingSpecBuffer."Expiration Date" := Today+TrackingSpecBuffer."Quantity (Base)"; //HBK
+
+                            //HBK / ITB - Udløbsdato
                         end;
 
                         trigger OnPreDataItem()
