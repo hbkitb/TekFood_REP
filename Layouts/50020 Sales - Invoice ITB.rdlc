@@ -8041,6 +8041,9 @@ End Function</Code>
         <Field Name="TrackingSpecBufferQtyFormat">
           <DataField>TrackingSpecBufferQtyFormat</DataField>
         </Field>
+        <Field Name="TrackingSpecBufferExpDate">
+          <DataField>TrackingSpecBufferExpDate</DataField>
+        </Field>
         <Field Name="ShowTotal">
           <DataField>ShowTotal</DataField>
         </Field>

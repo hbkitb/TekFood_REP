@@ -1163,6 +1163,13 @@ report 50020 "Sales - Invoice ITB"
                         column(TrackingSpecBufferQty; TrackingSpecBuffer."Quantity (Base)")
                         {
                         }
+                        column(TrackingSpecBufferExpDate; TrackingSpecBuffer."Expiration Date")
+                        {
+                        }   //HBK / ITB - Vedr. udløbsdato
+                        column(ExpireLbl; ExpireLbl)
+                        {
+
+                        }  //HBK / ITB - Udløb
                         column(ShowTotal; ShowTotal)
                         {
                         }
@@ -1886,6 +1893,7 @@ report 50020 "Sales - Invoice ITB"
         PageCaptionCapLbl: TextConst DAN = 'Side', DEU = 'Seite', ENU = 'Page';
         PageCaptionCap: TextConst DAN = '%1 af %2', DEU = '%1 von %2', ENU = '%1 of %2';
         Text006: TextConst DAN = 'Momsgrundlag', DEU = 'MwSt. Grundlage', ENU = 'VAT Base';
+        ExpireLbl: TextConst DAN = 'Udløbsdato', DEU = 'Expiration', ENU = 'Expiration'; //HBK / ITB / 060422
         GLSetup: Record "General Ledger Setup";
         ShipmentMethod: Record "Shipment Method";
         PaymentTerms: Record "Payment Terms";
