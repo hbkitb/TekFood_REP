@@ -1252,7 +1252,7 @@ report 50020 "Sales - Invoice ITB"
                             TrackEntryExp.SetRange("Lot No.", TrackingSpecBuffer."Lot No.");
                             //TrackEntryExp.SetRange("Item Tracking", TrackEntryExp."Item Tracking"::"Lot No.");
                             if TrackEntryExp.FindSet then begin
-                                //Message(Format(TrackEntryExp."Expiration Date"));
+                                //Message(Format(TrackEntryExp."Expiration Date"));   //200522
                                 TrackingSpecBuffer."Expiration Date" := TrackEntryExp."Expiration Date";
                                 TrackingSpecBuffer.Modify;
                             end;
