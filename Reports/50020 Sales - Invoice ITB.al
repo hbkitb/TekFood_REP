@@ -1060,13 +1060,14 @@ report 50020 "Sales - Invoice ITB"
                         trigger OnPostDataItem()
                         begin
 
-                            IF ShowLotSN THEN BEGIN
-                                ItemTrackingDocMgt.SetRetrieveAsmItemTracking(TRUE);
-                                TrackingSpecCount :=
-                                  ItemTrackingDocMgt.RetrieveDocumentItemTracking(TrackingSpecBuffer,
-                                    "Sales Invoice Header"."No.", DATABASE::"Sales Invoice Header", 0);
-                                ItemTrackingDocMgt.SetRetrieveAsmItemTracking(FALSE);
-                            END;
+                            //240522 IF ShowLotSN THEN BEGIN
+                            ShowLotSN := true;  //240522
+                            ItemTrackingDocMgt.SetRetrieveAsmItemTracking(TRUE);
+                            TrackingSpecCount :=
+                              ItemTrackingDocMgt.RetrieveDocumentItemTracking(TrackingSpecBuffer,
+                                "Sales Invoice Header"."No.", DATABASE::"Sales Invoice Header", 0);
+                            ItemTrackingDocMgt.SetRetrieveAsmItemTracking(FALSE);
+                            //240522 END;
 
                         end;
 
@@ -1527,12 +1528,12 @@ report 50020 "Sales - Invoice ITB"
                     }
                     trigger OnPreDataItem()
                     begin
-
-                        IF ShowLotSN THEN BEGIN
-                            TrackingSpecCount := 0;
-                            OldRefNo := 0;
-                            ShowGroup := FALSE;
-                        END;
+                        ShowLotSN := true;  //240522
+                                            //240522 IF ShowLotSN THEN BEGIN
+                        TrackingSpecCount := 0;
+                        OldRefNo := 0;
+                        ShowGroup := FALSE;
+                        //240522 END;
 
                     end;
                 }
@@ -1865,12 +1866,14 @@ report 50020 "Sales - Invoice ITB"
                         CaptionML = DAN = 'Vis leverancer',
                                     ENU = 'Show deliveries';
                     }
+                    /*  240522
                     field(ShowLotSN; ShowLotSN)
                     {
                         ApplicationArea = All;
                         CaptionML = DAN = 'Vis serie-/lotnummer',
                                     ENU = 'Show Serial/Lot Number';
                     }
+                    */
                 }
             }
         }
