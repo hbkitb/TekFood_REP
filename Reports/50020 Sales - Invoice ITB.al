@@ -954,7 +954,7 @@ report 50020 "Sales - Invoice ITB"
 
                         var
                             MangIten: Record Item;  //HBK / ITB - 091221
-
+                            TrackEntryExp: Record "Item Ledger Entry"; //140722
 
                         begin
                             PostedShipmentDate := 0D;
@@ -990,7 +990,20 @@ report 50020 "Sales - Invoice ITB"
                             TextLineIdx := 0;
 
                             IF Type = Type::Item THEN BEGIN
-
+                                // 140722
+                                //240522 IF ShowLotSN THEN BEGIN
+                                if TrackIsCalc = false then begin
+                                    ShowLotSN := true;  //240522
+                                    ShowLotSN := false;  //150722
+                                    ItemTrackingDocMgt.SetRetrieveAsmItemTracking(TRUE);
+                                    TrackingSpecCount :=
+                                      ItemTrackingDocMgt.RetrieveDocumentItemTracking(TrackingSpecBuffer,
+                                        "Sales Invoice Header"."No.", DATABASE::"Sales Invoice Header", 0);
+                                    ItemTrackingDocMgt.SetRetrieveAsmItemTracking(FALSE);
+                                    TrackIsCalc := true;
+                                end;
+                                //240522 END;
+                                //140722 
 
                                 ParamIdx := 15;
                                 ParamText[ParamIdx] := 'ItemText3';
@@ -1005,10 +1018,71 @@ report 50020 "Sales - Invoice ITB"
                                 ParamText[ParamIdx] := 'CustomerItemNo';
                                 ParamValue[ParamIdx] := FORMAT("No.");
                                 ReportSelections.GetParam_SalesInvoice("Sales Invoice Header", ParamIdx, ParamText[ParamIdx], ParamValue[ParamIdx]);
+
+                                //140722->
+                                TrackingSpecBuffer.Reset;
+                                clear(TrackingSpecBuffer);
+                                TrackingSpecBuffer.SetRange("Item No.", "No.");
+                                TrackingSpecBuffer.SetRange("Source Ref. No.", "Line No.");
+                                TrackingSpecBuffer.SetRange("Source ID", "Document No.");
+
+                                if TrackingSpecBuffer.FindSet then begin
+                                    repeat
+                                        //fin udløb
+                                        TrackEntryExp.Reset;
+                                        Clear(TrackEntryExp);
+                                        //Message(TrackingSpecBuffer."Item No.");
+                                        //Message(Format("Sales Invoice Header"."Posting Date"));
+                                        //Message(Format("Sales Invoice Line"."Line No."));
+                                        //Message(TrackingSpecBuffer."Lot No.");
+                                        //Message("Sales Invoice Header"."No.");
+                                        //Message(format(TrackingSpecBuffer."Entry No."));
+                                        //Message(TrackingSpecBuffer."Source ID");
+                                        //Message(TrackingSpecBuffer."Source Batch Name");
+                                        //Message(format(TrackingSpecBuffer."Appl.-from Item Entry"));
+                                        //Message(format(TrackingSpecBuffer."Source Subtype"));
+                                        //Message(format(TrackingSpecBuffer."Source Ref. No."));
+                                        //Message(format(TrackingSpecBuffer."Item Ledger Entry No."));
+                                        TrackEntryExp.SetRange("Item No.", TrackingSpecBuffer."Item No.");
+                                        //TrackEntryExp.SetRange("Posting Date", "Sales Invoice Header"."Posting Date");
+                                        TrackEntryExp.SetRange("Entry Type", TrackEntryExp."Entry Type"::Sale);
+                                        //TrackEntryExp.SetRange("Document No.", TrackingSpecBuffer."Source ID");
+                                        TrackEntryExp.SetRange("Document Line No.", TrackingSpecBuffer."Source Ref. No.");
+                                        TrackEntryExp.SetRange("Lot No.", TrackingSpecBuffer."Lot No.");
+                                        //TrackEntryExp.SetRange("Item Tracking", TrackEntryExp."Item Tracking"::"Lot No.");
+                                        if TrackEntryExp.FindSet then begin
+                                            //Message(Format(TrackEntryExp."Expiration Date"));   //200522
+                                            TrackingSpecBuffer."Expiration Date" := TrackEntryExp."Expiration Date";
+                                            TrackingSpecBuffer.Modify;
+                                        end;
+
+                                        //find udløb
+
+
+
+                                        //Message(TrackingSpecBuffer."Lot No.");
+                                        //Message(TrackingSpecBuffer."Item No.");
+                                        //Message(format(TrackingSpecBuffer."Source Ref. No."));
+                                        //Message(Format(TrackingSpecBuffer."Expiration Date"));
+                                        //Message(Format(TrackingSpecBuffer."Quantity (Base)"));
+                                        //Message(Format(TrackingSpecBuffer."Source ID"));
+                                        //Message(Format(TrackingSpecBuffer."Source Batch Name"));
+                                        //Message(Format(TrackingSpecBuffer."Qty. to Handle"));
+                                        //IF ParamText[ParamIdx] <> '' THEN BEGIN
+                                        TextLineIdx += 1;
+                                        TextLine[TextLineIdx] := 'LOT: ' + TrackingSpecBuffer."Lot No." + '; Antal:' + format(TrackingSpecBuffer."Quantity (Base)") + '; Udløb' + Format(TrackingSpecBuffer."Expiration Date") //ParamText[ParamIdx];
+                                                                                                                                                                                                                               //end;
+                                    until TrackingSpecBuffer.Next = 0;
+                                end;
+
+                                //140722 <-
+
+                                /*  140722 måske ind igen i stedet for ovenfor
                                 IF ParamText[ParamIdx] <> '' THEN BEGIN
                                     TextLineIdx += 1;
                                     TextLine[TextLineIdx] := ParamText[ParamIdx];
                                 END;
+                                140722 */
 
                                 ParamIdx := 15;
                                 ParamText[ParamIdx] := 'VendorItemNo';
@@ -1060,14 +1134,16 @@ report 50020 "Sales - Invoice ITB"
                         trigger OnPostDataItem()
                         begin
 
-                            //240522 IF ShowLotSN THEN BEGIN
-                            ShowLotSN := true;  //240522
-                            ItemTrackingDocMgt.SetRetrieveAsmItemTracking(TRUE);
-                            TrackingSpecCount :=
-                              ItemTrackingDocMgt.RetrieveDocumentItemTracking(TrackingSpecBuffer,
-                                "Sales Invoice Header"."No.", DATABASE::"Sales Invoice Header", 0);
-                            ItemTrackingDocMgt.SetRetrieveAsmItemTracking(FALSE);
-                            //240522 END;
+                            /*  140722
+                              //240522 IF ShowLotSN THEN BEGIN
+                              ShowLotSN := true;  //240522
+                              ItemTrackingDocMgt.SetRetrieveAsmItemTracking(TRUE);
+                              TrackingSpecCount :=
+                                ItemTrackingDocMgt.RetrieveDocumentItemTracking(TrackingSpecBuffer,
+                                  "Sales Invoice Header"."No.", DATABASE::"Sales Invoice Header", 0);
+                              ItemTrackingDocMgt.SetRetrieveAsmItemTracking(FALSE);
+                              //240522 END;
+                              */
 
                         end;
 
@@ -1529,7 +1605,8 @@ report 50020 "Sales - Invoice ITB"
                     trigger OnPreDataItem()
                     begin
                         ShowLotSN := true;  //240522
-                                            //240522 IF ShowLotSN THEN BEGIN
+                        ShowLotSN := false;  //150722
+                                             //240522 IF ShowLotSN THEN BEGIN
                         TrackingSpecCount := 0;
                         OldRefNo := 0;
                         ShowGroup := FALSE;
@@ -1885,6 +1962,7 @@ report 50020 "Sales - Invoice ITB"
         trigger OnInit();
         begin
             LogInteractionEnable := TRUE;
+            ShowLotSN := false;  //150722
         end;
 
         trigger OnOpenPage();
@@ -2177,6 +2255,7 @@ report 50020 "Sales - Invoice ITB"
         PaymentTermLines2_Navadan: Label 'We do not accept any deductions of bank transfer charges.';
         BeneficiaryCaption: Label 'BENEFICIARY:';
         Mangde: Text[20];  //HBK / ITB - 091221
+        TrackIsCalc: Boolean;  //HBK / ITB - 150722
 
     procedure InitLogInteraction();
     begin

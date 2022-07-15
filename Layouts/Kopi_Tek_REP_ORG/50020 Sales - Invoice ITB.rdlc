@@ -5858,7 +5858,7 @@ Cstr(Fields!ParamValue15.Value)
             <Width>19.7747cm</Width>
             <ZIndex>2</ZIndex>
             <Visibility>
-              <Hidden>=IIF(Fields!TrackingSpecBufferNo.Value &lt;&gt; "", False, True)</Hidden>
+              <Hidden>true</Hidden>
             </Visibility>
             <DataElementOutput>NoOutput</DataElementOutput>
             <Style />
