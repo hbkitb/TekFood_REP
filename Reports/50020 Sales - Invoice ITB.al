@@ -1282,6 +1282,7 @@ report 50020 "Sales - Invoice ITB"
                         var
                             TrackEntryExp: Record "Item Ledger Entry";  //HBK / ITB
                         begin
+                            /*  150722
                             IF Number = 1 THEN
                                 TrackingSpecBuffer.FINDSET
                             ELSE
@@ -1336,6 +1337,7 @@ report 50020 "Sales - Invoice ITB"
                             //TrackingSpecBuffer."Expiration Date" := Today+TrackingSpecBuffer."Quantity (Base)"; //HBK
 
                             //HBK / ITB - Udløbsdato
+                            150722 */
                         end;
 
                         trigger OnPreDataItem()
