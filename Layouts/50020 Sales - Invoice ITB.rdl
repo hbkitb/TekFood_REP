@@ -2921,7 +2921,7 @@ Cstr(Fields!ParamValue15.Value)
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>12.92523cm</Height>
+        <Height>12.9cm</Height>
         <Style />
       </Body>
       <Width>19.86051cm</Width>
@@ -4344,7 +4344,7 @@ Code.GetData(12,3))</Value>
           <Style />
         </PageHeader>
         <PageFooter>
-          <Height>5.04001cm</Height>
+          <Height>5.47001cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4837,7 +4837,7 @@ Code.GetData(12,3))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox19</rd:DefaultName>
-              <Top>4.08274cm</Top>
+              <Top>4.11801cm</Top>
               <Height>12pt</Height>
               <Width>19.812cm</Width>
               <ZIndex>14</ZIndex>

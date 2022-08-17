@@ -1632,7 +1632,7 @@ report 50020 "Sales - Invoice ITB"
                         CopyText := Text003;
                         OutputNo += 1;
                     END;
-                    /////CurrReport.PAGENO := 1;
+                    ///CurrReport.PAGENO := 1;
 
                     TotalSubTotal := 0;
                     TotalInvDiscAmount := 0;
