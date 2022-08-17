@@ -3,7 +3,8 @@ report 50020 "Sales - Invoice ITB"
 
 
     DefaultLayout = RDLC;
-    RDLCLayout = './Layouts/50020 Sales - Invoice ITB.rdlc';
+    RDLCLayout = './Layouts/50020 Sales - Invoice ITB.rdl';  //c
+    //RDLCLayout = './Layouts/kopi_Tek_REP_ORG\170822\50020 Sales - Invoice ITB.rdl';  //c
 
     CaptionML = DAN = 'Salg - faktura',
                 ENU = 'Sales - Invoice';
@@ -990,6 +991,8 @@ report 50020 "Sales - Invoice ITB"
                             TextLineIdx := 0;
 
                             IF Type = Type::Item THEN BEGIN
+
+                                //*160822 Ind igen
                                 // 140722
                                 //240522 IF ShowLotSN THEN BEGIN
                                 if TrackIsCalc = false then begin
@@ -1004,6 +1007,7 @@ report 50020 "Sales - Invoice ITB"
                                 end;
                                 //240522 END;
                                 //140722 
+                                //160822 <- ind igen */
 
                                 ParamIdx := 15;
                                 ParamText[ParamIdx] := 'ItemText3';
@@ -1018,6 +1022,8 @@ report 50020 "Sales - Invoice ITB"
                                 ParamText[ParamIdx] := 'CustomerItemNo';
                                 ParamValue[ParamIdx] := FORMAT("No.");
                                 ReportSelections.GetParam_SalesInvoice("Sales Invoice Header", ParamIdx, ParamText[ParamIdx], ParamValue[ParamIdx]);
+
+
 
                                 //140722->
                                 TrackingSpecBuffer.Reset;
@@ -1075,6 +1081,7 @@ report 50020 "Sales - Invoice ITB"
                                     until TrackingSpecBuffer.Next = 0;
                                 end;
 
+
                                 //140722 <-
 
                                 /*  140722 måske ind igen i stedet for ovenfor
@@ -1083,6 +1090,8 @@ report 50020 "Sales - Invoice ITB"
                                     TextLine[TextLineIdx] := ParamText[ParamIdx];
                                 END;
                                 140722 */
+
+
 
                                 ParamIdx := 15;
                                 ParamText[ParamIdx] := 'VendorItemNo';
@@ -2194,7 +2203,7 @@ report 50020 "Sales - Invoice ITB"
         "//ITB.ProformaInvoice": Integer;
         ProformaInvoice: Boolean;
         ReportCaption: Text;
-        "//ITB.txt.ProformaInvoice": Integer;
+        "//ITB.txt.PrshowlotoformaInvoice": Integer;
         ProformaCaption: TextConst DAN = 'Proformafaktura %1', DEU = 'Proforma Rechnung %1', ENU = 'Proforma Invoice %1';
         ParamDropWorkDescription: Boolean;
         "//ITB.Tracking": Integer;
